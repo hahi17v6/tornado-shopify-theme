@@ -1,0 +1,126 @@
+{%- comment -%}
+  TORNADO — EXCLUSIVE DROP LANDING PAGE (PHASE 8)
+  Landing page événementielle pour les drops limités avec compte à rebours,
+  statuts dynamiques (UPCOMING / LIVE / ENDED) et accès anticipé VIP.
+{%- endcomment -%}
+
+{%- assign drop_status = section.settings.drop_status | default: 'UPCOMING' -%}
+{%- assign drop_launch_date = section.settings.drop_launch_date | default: '2026-11-15T20:00:00' -%}
+
+<div class="tornado-drop-page container padding-v-2xl text-center" data-drop-page>
+  <!-- Hero Section -->
+  <div class="drop-hero tornado-glass-card padding-2xl margin-bottom-2xl relative overflow-hidden border-gold">
+    <div class="drop-hero-bg"></div>
+
+    <div class="flex justify-center gap-xs margin-bottom-sm">
+      {%- if drop_status == 'UPCOMING' -%}
+        <span class="tornado-badge tornado-badge--gold">🔒 DROP À VENIR — ACCÈS VIP</span>
+      {%- elsif drop_status == 'LIVE' -%}
+        <span class="tornado-badge tornado-badge--success">⚡ DROP ACTUELLEMENT EN LIGNE</span>
+      {%- else -%}
+        <span class="tornado-badge tornado-badge--danger">✖ DROP ÉPUISÉ / TERMINÉ</span>
+      {%- endif -%}
+    </div>
+
+    <h1 class="font-heading text-4xl uppercase tracking-widest text-gold-gradient margin-bottom-xs">
+      {{ section.settings.drop_title | default: "DROP #04 — VORTEX OBSIDIAN" }}
+    </h1>
+    <p class="text-sm text-secondary max-w-lg margin-auto margin-bottom-xl">
+      {{ section.settings.drop_subtitle | default: "Collection capsule ultra-limitée à 100 pièces numérotées. Coton lourd 450 gsm & sérigraphie or 24 carats." }}
+    </p>
+
+    {%- if drop_status == 'UPCOMING' -%}
+      <!-- Real Countdown Timer to Launch -->
+      <div class="drop-countdown-container margin-bottom-xl" data-drop-launch-timer="{{ drop_launch_date }}">
+        <span class="text-xs text-secondary font-bold uppercase tracking-widest block margin-bottom-xs">LANCEMENT OFFICIEL DANS</span>
+        <div class="timer-digits flex justify-center gap-md text-white font-heading text-4xl font-bold font-mono">
+          <div><span id="drop-timer-days">00</span><small class="block text-xs text-secondary font-sans">JOURS</small></div>
+          <span>:</span>
+          <div><span id="drop-timer-hours">00</span><small class="block text-xs text-secondary font-sans">HEURES</small></div>
+          <span>:</span>
+          <div><span id="drop-timer-mins">00</span><small class="block text-xs text-secondary font-sans">MINUTES</small></div>
+          <span>:</span>
+          <div><span id="drop-timer-secs">00</span><small class="block text-xs text-secondary font-sans">SECONDES</small></div>
+        </div>
+      </div>
+
+      <!-- Early Access Signup Form -->
+      <div class="early-access-box max-w-md margin-auto bg-surface padding-lg border-radius-md border-subtle">
+        <h3 class="font-heading text-sm uppercase text-white margin-bottom-xs">RÉSERVER UN ACCÈS ANTICIPÉ (EARLY ACCESS)</h3>
+        <p class="text-xs text-secondary margin-bottom-md">Inscrivez-vous pour recevoir le mot de passe secret 1 heure avant l'ouverture générale.</p>
+        
+        {%- form 'customer', class: 'early-access-form flex gap-xs flex-mobile-column' -%}
+          <input type="hidden" name="contact[tags]" value="early_access_drop_04">
+          <input type="email" name="contact[email]" placeholder="Votre adresse email *" required class="tornado-input flex-1">
+          <button type="submit" class="tornado-btn tornado-btn--gold text-xs font-bold uppercase">
+            ACCÈS ANTICIPÉ &rarr;
+          </button>
+        {%- endform -%}
+      </div>
+    {%- elsif drop_status == 'LIVE' -%}
+      <div class="margin-bottom-xl">
+        <a href="#drop-products" class="tornado-btn tornado-btn--gold text-sm font-bold uppercase tracking-wider padding-v-md padding-h-2xl">
+          COMMANDER LE DROP MAINTEANT &rarr;
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- Drop Products Grid -->
+  <div class="drop-products-section" id="drop-products">
+    <h2 class="font-heading text-2xl uppercase tracking-widest text-white margin-bottom-xl">
+      PIÈCES DU DROP #04
+    </h2>
+
+    <div class="grid grid-3-col gap-lg">
+      {%- assign drop_collection = collections[section.settings.drop_collection] | default: collections.all -%}
+      {%- for product in drop_collection.products limit: 6 -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <p class="text-xs text-secondary col-span-full">Aucun produit configuré pour ce drop.</p>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Landing Page Drop",
+  "settings": [
+    {
+      "type": "text",
+      "id": "drop_title",
+      "label": "Titre du Drop",
+      "default": "DROP #04 — VORTEX OBSIDIAN"
+    },
+    {
+      "type": "textarea",
+      "id": "drop_subtitle",
+      "label": "Sous-titre / Description",
+      "default": "Collection capsule ultra-limitée à 100 pièces numérotées."
+    },
+    {
+      "type": "select",
+      "id": "drop_status",
+      "label": "Statut du Drop",
+      "options": [
+        { "value": "UPCOMING", "label": "À venir (UPCOMING)" },
+        { "value": "LIVE", "label": "En ligne (LIVE)" },
+        { "value": "ENDED", "label": "Terminé (ENDED)" }
+      ],
+      "default": "UPCOMING"
+    },
+    {
+      "type": "text",
+      "id": "drop_launch_date",
+      "label": "Date de lancement ISO (ex: 2026-11-15T20:00:00)",
+      "default": "2026-11-15T20:00:00"
+    },
+    {
+      "type": "collection",
+      "id": "drop_collection",
+      "label": "Collection du Drop"
+    }
+  ]
+}
+{% endschema %}

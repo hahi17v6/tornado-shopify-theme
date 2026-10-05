@@ -1,0 +1,158 @@
+<section class="tornado-section container" data-section-id="{{ section.id }}">
+  <!-- Header de Collection -->
+  <div class="tornado-collection-header mb-xl">
+    <div class="tornado-collection-header__info">
+      <span class="badge-tornado badge-drop mb-xs">COLLECTION</span>
+      <h1 class="display-title mb-sm">{{ collection.title }}</h1>
+      {% if collection.description != blank %}
+        <p class="text-secondary max-w-600 mb-md">{{ collection.description }}</p>
+      {% endif %}
+      <span class="text-secondary text-sm font-semibold">{{ collection.all_products_count }} PRODUITS DISPONIBLES</span>
+    </div>
+  </div>
+
+  <!-- Toolbar Filtres & Tri -->
+  <div class="tornado-collection-toolbar mb-lg">
+    <button type="button" class="btn-tornado-secondary tornado-filter-toggle" data-filter-drawer-toggle>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+      <span>FILTRES ET TRI</span>
+      {% if collection.filters.size > 0 %}
+        <span class="badge-tornado badge-drop ml-xs" data-active-filters-count></span>
+      {% endif %}
+    </button>
+
+    <div class="tornado-collection-toolbar__sort desktop-only">
+      <label for="SortBy" class="text-secondary text-sm mr-xs">Trier par :</label>
+      <select id="SortBy" class="tornado-select" data-sort-by>
+        {% for option in collection.sort_options %}
+          <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>
+            {{ option.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="tornado-collection-layout">
+    <!-- Desktop Sidebar Filters -->
+    <aside class="tornado-collection-sidebar desktop-only" role="region" aria-label="Filtres">
+      <form class="tornado-filter-form" data-filter-form>
+        <div class="tornado-filter-group">
+          <h3 class="tornado-filter-group__title">MARQUES</h3>
+          <ul class="tornado-filter-group__list">
+            <li>
+              <label class="tornado-checkbox">
+                <input type="checkbox" name="filter.p.vendor" value="TORNADO">
+                <span>TORNADO LABS</span>
+              </label>
+            </li>
+            <li>
+              <label class="tornado-checkbox">
+                <input type="checkbox" name="filter.p.vendor" value="VALENTINO">
+                <span>VALENTINO STUDIO</span>
+              </label>
+            </li>
+            <li>
+              <label class="tornado-checkbox">
+                <input type="checkbox" name="filter.p.vendor" value="OBSIDIAN">
+                <span>OBSIDIAN PARIS</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tornado-filter-group">
+          <h3 class="tornado-filter-group__title">TAILLE</h3>
+          <div class="tornado-filter-sizes">
+            {% for size in 'XS,S,M,L,XL,XXL' | split: ',' %}
+              <label class="tornado-size-chip">
+                <input type="checkbox" name="filter.v.option.size" value="{{ size }}">
+                <span>{{ size }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="tornado-filter-group">
+          <h3 class="tornado-filter-group__title">DISPONIBILITÉ</h3>
+          <ul class="tornado-filter-group__list">
+            <li>
+              <label class="tornado-checkbox">
+                <input type="checkbox" name="filter.v.availability" value="1">
+                <span>En Stock uniquement</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </aside>
+
+    <!-- Main Products Grid -->
+    <div class="tornado-collection-main">
+      {% if collection.products.size > 0 %}
+        <div class="tornado-grid tornado-grid--4col" data-products-grid>
+          {% for product in collection.products %}
+            {% render 'product-card', card_product: product %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <!-- Empty Collection State -->
+        <div class="glass-panel text-center py-3xl px-lg rounded-md">
+          <span class="badge-tornado badge-limited mb-sm">AUCUN RÉSULTAT</span>
+          <h2 class="display-subtitle text-gold-gradient mb-sm">NOTHING HERE YET.</h2>
+          <p class="text-secondary max-w-600 mb-lg">Aucun produit ne correspond actuellement aux filtres sélectionnés.</p>
+          <a href="{{ collection.url }}" class="btn-tornado-primary">RÉINITIALISER LES FILTRES</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Mobile Filter Drawer -->
+<div class="filter-drawer-overlay" data-filter-overlay></div>
+<aside class="filter-drawer" data-filter-drawer aria-hidden="true">
+  <div class="filter-drawer__header">
+    <h3 class="filter-drawer__title">FILTRER LES PRODUITS</h3>
+    <button type="button" class="filter-drawer__close" data-filter-drawer-close aria-label="Fermer">
+      {% render 'icon-close' %}
+    </button>
+  </div>
+
+  <div class="filter-drawer__body">
+    <div class="tornado-filter-group">
+      <h4 class="tornado-filter-group__title">TRIER PAR</h4>
+      <select class="tornado-select w-full" data-mobile-sort-by>
+        {% for option in collection.sort_options %}
+          <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>
+            {{ option.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="tornado-filter-group mt-md">
+      <h4 class="tornado-filter-group__title">TAILLE</h4>
+      <div class="tornado-filter-sizes">
+        {% for size in 'XS,S,M,L,XL,XXL' | split: ',' %}
+          <label class="tornado-size-chip">
+            <input type="checkbox" name="filter.v.option.size" value="{{ size }}">
+            <span>{{ size }}</span>
+          </label>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-drawer__footer">
+    <button type="button" class="btn-tornado-primary w-full" data-filter-apply>
+      AFFICHER LES RÉSULTATS
+    </button>
+  </div>
+</aside>
+
+{% schema %}
+{
+  "name": "Collection Native PLP",
+  "settings": []
+}
+{% endschema %}

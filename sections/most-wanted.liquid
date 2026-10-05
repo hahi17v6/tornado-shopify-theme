@@ -1,0 +1,62 @@
+<section class="tornado-section container" data-section-id="{{ section.id }}">
+  <div class="tornado-section__header">
+    <div>
+      <span class="badge-tornado badge-limited mb-xs">POPULAIRE</span>
+      <h2 class="tornado-section__title display-subtitle">{{ section.settings.title }}</h2>
+    </div>
+    {% if section.settings.link != blank %}
+      <a href="{{ section.settings.link }}" class="tornado-section__more-link text-gold-gradient font-bold">DÉCOUVRIR LES BEST-SELLERS &rarr;</a>
+    {% endif %}
+  </div>
+
+  <div class="tornado-grid tornado-grid--4col">
+    {% assign selected_collection = collections[section.settings.collection] %}
+    {% for product in selected_collection.products limit: 4 %}
+      {% render 'product-card', card_product: product %}
+    {% else %}
+      {% for i in (1..4) %}
+        <div class="product-card">
+          <div class="product-card__image-wrapper">
+            <div class="demo-image-placeholder">MOST WANTED #0{{ i }}</div>
+            <span class="badge-tornado badge-drop">BEST-SELLER</span>
+          </div>
+          <div class="product-card__info">
+            <span class="product-card__vendor">TORNADO</span>
+            <h3 class="product-card__title">Obsidian Luxury Bomber Jacket</h3>
+            <div class="product-card__price"><span class="price text-gold-gradient">240,00 €</span></div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Most Wanted / Best-Sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre de la section",
+      "default": "MOST WANTED — SELECTION EXCLUSIVE"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection Best-Sellers"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Lien 'Voir Tout'",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Most Wanted TORNADO"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,35 @@
+{%- comment -%}
+  TORNADO — Product Recommendations "Vous aimerez aussi"
+  Utilise l'API Shopify Product Recommendations (section rendering)
+{%- endcomment -%}
+
+<div class="pdp-recommendations tornado-section" data-product-recommendations data-product-id="{{ product.id }}" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="tornado-section__header">
+      <h2 class="display-subtitle">{{ section.settings.reco_heading | default: 'VOUS AIMEREZ AUSSI' }}</h2>
+      {%- if product.collections.first -%}
+        <a href="{{ product.collections.first.url }}" class="tornado-link-gold">
+          TOUT VOIR →
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="pdp-recommendations__grid tornado-grid tornado-grid--4col" data-recommendations-grid>
+      {%- comment -%}
+        Le contenu est chargé via JS avec l'API Shopify Product Recommendations.
+        Fallback statique avec les produits de la même collection.
+      {%- endcomment -%}
+      {%- if recommendations.products and recommendations.products.size > 0 -%}
+        {%- for reco_product in recommendations.products limit: 4 -%}
+          {% render 'product-card', card_product: reco_product %}
+        {%- endfor -%}
+      {%- elsif product.collections.first -%}
+        {%- for collection_product in product.collections.first.products limit: 4 -%}
+          {%- unless collection_product.id == product.id -%}
+            {% render 'product-card', card_product: collection_product %}
+          {%- endunless -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>

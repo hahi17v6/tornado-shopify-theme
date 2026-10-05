@@ -1,44 +1,35 @@
 /* ==========================================================================
-   TORNADO LUXURY STREETWEAR — DESIGN SYSTEM TOKENS (CSS)
+   TORNADO LUXURY STREETWEAR — DESIGN SYSTEM TOKENS (PHASE 2)
    ========================================================================== */
 
 :root {
-  /* ------------------------------------------------------------------------
-     1. COLOR PALETTE (TOKENS)
-     ------------------------------------------------------------------------ */
-  /* Backgrounds */
-  --tornado-bg-main: #0A0A0A;          /* Noir Profond Obsidian */
-  --tornado-bg-surface: #141414;       /* Cartes & Panels */
-  --tornado-bg-elevated: #1F1F1F;      /* Modales & Drawers */
-  --tornado-bg-overlay: rgba(10, 10, 10, 0.85);
+  /* --- COLOR SYSTEM --- */
+  --tornado-bg-main: #0A0A0A;          /* Obsidian Deep Black */
+  --tornado-bg-surface: #141414;       /* Surface Cards & Panels */
+  --tornado-bg-elevated: #1F1F1F;      /* Modals & Cart Drawer */
+  --tornado-bg-overlay: rgba(10, 10, 10, 0.88);
 
-  /* Borders & Dividers */
+  --tornado-text-primary: #FFFFFF;     /* Pure White (WCAG AAA 21:1) */
+  --tornado-text-secondary: #D1D5DB;   /* High Contrast Light Silver (WCAG AAA 14:1) */
+  --tornado-text-muted: #9CA3AF;       /* Clear Discret Details (WCAG AA 7:1) */
+  --tornado-text-inverse: #0A0A0A;     /* Dark Text on Gold */
+
+  --tornado-gold-main: #D4AF37;        /* Champagne Gold Metallic */
+  --tornado-gold-light: #F7D774;       /* Luminous Gold Highlight */
+  --tornado-gold-dark: #997A15;        /* Deep Gold Accent */
+  --tornado-gold-gradient: linear-gradient(135deg, #F7D774 0%, #D4AF37 50%, #997A15 100%);
+  --tornado-gold-glow: 0 0 25px rgba(212, 175, 55, 0.28);
+
   --tornado-border-subtle: #262626;
   --tornado-border-strong: #3A3A3A;
-  --tornado-border-gold: rgba(212, 175, 55, 0.35);
+  --tornado-border-gold: rgba(212, 175, 55, 0.4);
 
-  /* Typography Colors */
-  --tornado-text-primary: #FFFFFF;
-  --tornado-text-secondary: #A0A0A0;
-  --tornado-text-muted: #666666;
-  --tornado-text-inverse: #0A0A0A;
-
-  /* Accent Colors (Champagne Gold Luxury) */
-  --tornado-gold-main: #D4AF37;
-  --tornado-gold-light: #F7D774;
-  --tornado-gold-dark: #997A15;
-  --tornado-gold-gradient: linear-gradient(135deg, #F7D774 0%, #D4AF37 50%, #997A15 100%);
-  --tornado-gold-glow: 0 0 20px rgba(212, 175, 55, 0.25);
-
-  /* Feedback Colors */
   --tornado-color-error: #FF4D4D;
   --tornado-color-success: #00E676;
   --tornado-color-warning: #FFB300;
 
-  /* ------------------------------------------------------------------------
-     2. TYPOGRAPHY
-     ------------------------------------------------------------------------ */
-  --font-family-display: 'Syne', 'Outfit', 'Helvetica Neue', sans-serif;
+  /* --- TYPOGRAPHY SCALE --- */
+  --font-family-display: 'Syne', 'Outfit', sans-serif;
   --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --font-size-xs: 0.75rem;    /* 12px */
@@ -49,8 +40,7 @@
   --font-size-2xl: 1.5rem;    /* 24px */
   --font-size-3xl: 2rem;      /* 32px */
   --font-size-4xl: 2.75rem;   /* 44px */
-  --font-size-5xl: 3.75rem;   /* 60px */
-  --font-size-hero: 5rem;     /* 80px */
+  --font-size-hero: 4.5rem;   /* 72px */
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -61,11 +51,9 @@
   --letter-spacing-tight: -0.02em;
   --letter-spacing-normal: 0em;
   --letter-spacing-wide: 0.08em;
-  --letter-spacing-widest: 0.2em;
+  --letter-spacing-widest: 0.18em;
 
-  /* ------------------------------------------------------------------------
-     3. SPACING & LAYOUT
-     ------------------------------------------------------------------------ */
+  /* --- SPACING SCALE --- */
   --space-xs: 0.25rem;   /* 4px */
   --space-sm: 0.5rem;    /* 8px */
   --space-md: 1rem;      /* 16px */
@@ -73,150 +61,47 @@
   --space-xl: 2rem;      /* 32px */
   --space-2xl: 3rem;     /* 48px */
   --space-3xl: 4.5rem;   /* 72px */
-  --space-hero: 6rem;    /* 96px */
 
+  /* --- RADII --- */
   --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
   --radius-full: 9999px;
 
-  /* ------------------------------------------------------------------------
-     4. ANIMATIONS & TRANSITIONS
-     ------------------------------------------------------------------------ */
+  /* --- SHADOWS --- */
+  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.7);
+  --shadow-gold: 0 8px 25px rgba(212, 175, 55, 0.35);
+
+  /* --- TRANSITIONS & ANIMATIONS --- */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 500ms cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* ------------------------------------------------------------------------
-     5. Z-INDEX SYSTEM
-     ------------------------------------------------------------------------ */
+  /* --- Z-INDEX SYSTEM --- */
   --z-back: -1;
   --z-base: 1;
   --z-sticky: 100;
   --z-header: 200;
-  --z-drawer: 300;
+  --z-overlay: 300;
+  --z-drawer: 310;
   --z-modal: 400;
   --z-toast: 500;
+
+  /* --- BREAKPOINTS (FOR REFERENCE) --- */
+  --bp-mobile: 480px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-widescreen: 1440px;
 }
 
-/* ==========================================================================
-   UTILITY & COMPONENT CLASSES
-   ========================================================================== */
-
-/* Gold Gradient Text */
-.text-gold-gradient {
-  background: var(--tornado-gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glassmorphism Surface */
-.glass-panel {
-  background: rgba(20, 20, 20, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--tornado-border-subtle);
-}
-
-/* Luxury Primary Button */
-.btn-tornado-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-  padding: 1rem 2rem;
-  background: var(--tornado-gold-gradient);
-  color: var(--tornado-text-inverse);
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-}
-
-.btn-tornado-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-  filter: brightness(1.1);
-}
-
-.btn-tornado-primary:active {
-  transform: translateY(0);
-}
-
-/* Luxury Secondary Outline Button */
-.btn-tornado-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-  padding: 1rem 2rem;
-  background: transparent;
-  color: var(--tornado-text-primary);
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-  border: 1px solid var(--tornado-border-strong);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-}
-
-.btn-tornado-secondary:hover {
-  border-color: var(--tornado-gold-main);
-  color: var(--tornado-gold-main);
-  background: rgba(212, 175, 55, 0.05);
-}
-
-/* Status Badges */
-.badge-tornado {
-  display: inline-block;
-  padding: 0.25rem 0.625rem;
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-  border-radius: var(--radius-xs);
-}
-
-.badge-drop {
-  background: var(--tornado-gold-gradient);
-  color: #0A0A0A;
-}
-
-.badge-limited {
-  background: var(--tornado-bg-surface);
-  color: var(--tornado-gold-main);
-  border: 1px solid var(--tornado-gold-main);
-}
-
-.badge-sale {
-  background: var(--tornado-color-error);
-  color: #FFFFFF;
-}
-
-/* Product Card Hover Effect */
-.product-card {
-  position: relative;
-  background: var(--tornado-bg-surface);
-  border: 1px solid var(--tornado-border-subtle);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  transition: all var(--transition-normal);
-}
-
-.product-card:hover {
-  border-color: var(--tornado-border-gold);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), var(--tornado-gold-glow);
-  transform: translateY(-4px);
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

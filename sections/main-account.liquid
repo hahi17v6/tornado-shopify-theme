@@ -1,0 +1,156 @@
+{%- comment -%}
+  TORNADO — MY ACCOUNT DASHBOARD (PHASE 7)
+  Tableau de bord client OS 2.0 avec onglets Commandes, Wishlist, Profil et Déconnexion
+{%- endcomment -%}
+
+<div class="tornado-customer-account container padding-v-2xl" data-account-dashboard>
+  <!-- Account Header -->
+  <div class="account-header text-center margin-bottom-xl">
+    <span class="tornado-badge tornado-badge--gold margin-bottom-xs">ESPACE MEMBRE VIP</span>
+    <h1 class="font-heading text-3xl uppercase tracking-widest text-white margin-bottom-xs">
+      BIENVENUE, {{ customer.first_name | default: customer.name | uppercase }}
+    </h1>
+    <p class="text-xs text-secondary font-mono">{{ customer.email }}</p>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <div class="account-tabs flex justify-center gap-md border-bottom padding-bottom-md margin-bottom-xl" data-account-nav>
+    <button type="button" class="account-tab-btn is-active" data-tab-target="orders">
+      MES COMMANDES ({{ customer.orders.size }})
+    </button>
+    <button type="button" class="account-tab-btn" data-tab-target="wishlist">
+      MA WISHLIST (<span data-wishlist-count>0</span>)
+    </button>
+    <button type="button" class="account-tab-btn" data-tab-target="profile">
+      MON PROFIL & ADRESSES
+    </button>
+    <a href="{{ routes.account_logout_url }}" class="account-tab-btn text-danger hover-gold">
+      DÉCONNEXION &rarr;
+    </a>
+  </div>
+
+  <!-- Tab Content: Orders -->
+  <div class="account-tab-panel is-active" id="tab-orders" data-tab-panel="orders">
+    {%- if customer.orders.size > 0 -%}
+      <div class="orders-table-wrapper tornado-glass-card padding-lg">
+        <table class="orders-table w-full text-left">
+          <thead>
+            <tr class="text-xs font-bold text-secondary uppercase border-bottom padding-bottom-sm">
+              <th class="padding-v-sm">COMMANDE</th>
+              <th class="padding-v-sm">DATE</th>
+              <th class="padding-v-sm">PAIEMENT</th>
+              <th class="padding-v-sm">LIVRAISON</th>
+              <th class="padding-v-sm text-right">TOTAL</th>
+              <th class="padding-v-sm text-right">ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for order in customer.orders -%}
+              <tr class="border-bottom border-subtle">
+                <td class="padding-v-md font-mono font-bold text-white">
+                  <a href="{{ order.customer_url }}" class="hover-gold">{{ order.name }}</a>
+                </td>
+                <td class="padding-v-md text-xs text-secondary">
+                  {{ order.created_at | time_tag: format: 'date' }}
+                </td>
+                <td class="padding-v-md text-xs">
+                  <span class="tornado-badge text-xs">{{ order.financial_status_label }}</span>
+                </td>
+                <td class="padding-v-md text-xs">
+                  <span class="tornado-badge tornado-badge--gold text-xs">{{ order.fulfillment_status_label }}</span>
+                </td>
+                <td class="padding-v-md text-sm font-bold font-mono text-white text-right">
+                  {{ order.total_price | money }}
+                </td>
+                <td class="padding-v-md text-right">
+                  <a href="{{ order.customer_url }}" class="tornado-btn tornado-btn--outline text-xs padding-xs">
+                    VOIR DÉTAILS
+                  </a>
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    {%- else -%}
+      <div class="orders-empty text-center padding-v-xl tornado-glass-card">
+        <h3 class="font-heading text-lg uppercase text-white margin-bottom-xs">AUCUNE COMMANDE ENREGISTRÉE</h3>
+        <p class="text-xs text-secondary margin-bottom-lg">Vous n'avez pas encore passé de commande avec ce compte.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="tornado-btn tornado-btn--primary text-xs font-bold uppercase">
+          DÉCOUVRIR LE CATALOGUE
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- Tab Content: Wishlist -->
+  <div class="account-tab-panel" id="tab-wishlist" data-tab-panel="wishlist" style="display: none;">
+    {% render 'wishlist-grid' %}
+  </div>
+
+  <!-- Tab Content: Profile & Addresses -->
+  <div class="account-tab-panel" id="tab-profile" data-tab-panel="profile" style="display: none;">
+    <div class="profile-grid grid grid-2-col gap-lg">
+      <div class="tornado-glass-card padding-lg">
+        <h3 class="font-heading text-md uppercase text-white margin-bottom-md border-bottom padding-bottom-xs">
+          INFORMATIONS PERSONNELLES
+        </h3>
+        <div class="text-sm margin-bottom-xs text-secondary">Nom : <strong class="text-white">{{ customer.name }}</strong></div>
+        <div class="text-sm margin-bottom-lg text-secondary">Email : <strong class="text-white">{{ customer.email }}</strong></div>
+        <a href="{{ routes.account_addresses_url }}" class="tornado-btn tornado-btn--gold text-xs font-bold uppercase">
+          GÉRER MES ADRESSES ({{ customer.addresses_count }})
+        </a>
+      </div>
+
+      <div class="tornado-glass-card padding-lg">
+        <h3 class="font-heading text-md uppercase text-white margin-bottom-md border-bottom padding-bottom-xs">
+          ADRESSE PAR DÉFAUT
+        </h3>
+        {%- if customer.default_address -%}
+          <div class="text-sm text-secondary line-height-relaxed">
+            <p class="font-bold text-white margin-none">{{ customer.default_address.first_name }} {{ customer.default_address.last_name }}</p>
+            <p class="margin-none">{{ customer.default_address.address1 }}</p>
+            {% if customer.default_address.address2 %}<p class="margin-none">{{ customer.default_address.address2 }}</p>{% endif %}
+            <p class="margin-none">{{ customer.default_address.zip }} {{ customer.default_address.city }}</p>
+            <p class="margin-none">{{ customer.default_address.country }}</p>
+          </div>
+        {%- else -%}
+          <p class="text-xs text-secondary">Aucune adresse enregistrée.</p>
+          <a href="{{ routes.account_addresses_url }}" class="tornado-btn tornado-btn--outline text-xs font-bold uppercase margin-top-sm">
+            AJOUTER UNE ADRESSE
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabBtns = document.querySelectorAll('[data-tab-target]');
+    const tabPanels = document.querySelectorAll('[data-tab-panel]');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tabTarget;
+        tabBtns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        tabPanels.forEach(panel => {
+          if (panel.dataset.tabPanel === target) {
+            panel.style.display = 'block';
+          } else {
+            panel.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Espace Compte Client",
+  "settings": []
+}
+{% endschema %}
