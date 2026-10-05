@@ -2109,3 +2109,114 @@ img {
 
 
 
+
+/* ==========================================================================
+   NAVIGATION DROPDOWNS & MEGAMENU & SEARCH MODAL FIXES
+   ========================================================================== */
+.tornado-header__menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tornado-header__menu-item {
+  position: relative;
+}
+
+.tornado-megamenu,
+.tornado-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 250;
+  background-color: #141414;
+  border: 1px solid #262626;
+  border-radius: 6px;
+  padding: 1.5rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9);
+  min-width: 240px;
+}
+
+.tornado-megamenu {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 900px;
+}
+
+.tornado-megamenu__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.tornado-megamenu__title {
+  display: block;
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #D4AF37;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.tornado-megamenu ul,
+.tornado-dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tornado-megamenu li a,
+.tornado-dropdown li a {
+  display: block;
+  padding: 0.4rem 0;
+  font-size: 0.875rem;
+  color: #D1D5DB;
+  transition: color 150ms ease;
+}
+
+.tornado-megamenu li a:hover,
+.tornado-dropdown li a:hover {
+  color: #D4AF37;
+}
+
+.tornado-header__menu-item--has-dropdown:hover .tornado-megamenu,
+.tornado-header__menu-item--has-dropdown:hover .tornado-dropdown {
+  display: block;
+}
+
+/* Search Modal Overlay Hidden by Default */
+.search-modal,
+.search-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+}
+
+.search-modal-overlay {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.search-modal.is-active,
+.search-modal-overlay.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-modal__inner {
+  background: #141414;
+  border: 1px solid #D4AF37;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+}
