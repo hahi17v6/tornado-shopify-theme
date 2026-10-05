@@ -96,12 +96,21 @@
           {% endfor %}
         </div>
       {% else %}
-        <!-- Empty Collection State -->
-        <div class="glass-panel text-center py-3xl px-lg rounded-md">
-          <span class="badge-tornado badge-limited mb-sm">AUCUN RÉSULTAT</span>
-          <h2 class="display-subtitle text-gold-gradient mb-sm">NOTHING HERE YET.</h2>
-          <p class="text-secondary max-w-600 mb-lg">Aucun produit ne correspond actuellement aux filtres sélectionnés.</p>
-          <a href="{{ collection.url }}" class="btn-tornado-primary">RÉINITIALISER LES FILTRES</a>
+        <!-- Demo Products Display for Empty / New Store Collections -->
+        <div class="tornado-grid tornado-grid--4col" data-products-grid>
+          {% for i in (1..4) %}
+            <div class="product-card">
+              <div class="product-card__image-wrapper">
+                <div class="demo-image-placeholder">TORNADO EXCLUSIVE #0{{ i }}</div>
+                <span class="badge-tornado badge-drop">NOUVEAUTÉ</span>
+              </div>
+              <div class="product-card__info">
+                <span class="product-card__vendor">TORNADO LABS</span>
+                <h3 class="product-card__title">Obsidian Heavyweight Hoodie</h3>
+                <div class="product-card__price"><span class="price text-gold-gradient">180,00 €</span></div>
+              </div>
+            </div>
+          {% endfor %}
         </div>
       {% endif %}
     </div>
