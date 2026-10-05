@@ -109,7 +109,7 @@
             </div>
           {%- endfor -%}
 
-          {%- comment -%} Quantité + Bouton Ajouter {%- endcomment -%}
+          {%- comment -%} Quantité + Double Boutons d'Achat {%- endcomment -%}
           <div class="tornado-pdp__actions">
             <div class="tornado-pdp__qty-wrap">
               <button type="button" class="tornado-pdp__qty-btn" data-qty-minus aria-label="Réduire la quantité">−</button>
@@ -126,19 +126,30 @@
               <button type="button" class="tornado-pdp__qty-btn" data-qty-plus aria-label="Augmenter la quantité">+</button>
             </div>
 
-            <button
-              type="submit"
-              class="btn-tornado-primary tornado-pdp__add-btn"
-              data-add-to-cart-btn
-              {% unless current_variant.available %}disabled{% endunless %}
-            >
+            <div class="tornado-pdp__buttons-group">
+              <button
+                type="submit"
+                class="btn-tornado-primary tornado-pdp__add-btn"
+                data-add-to-cart-btn
+                {% unless current_variant.available %}disabled{% endunless %}
+              >
+                {%- if current_variant.available -%}
+                  <span data-add-text>AJOUTER AU PANIER</span>
+                {%- else -%}
+                  <span data-add-text>ÉPUISÉ</span>
+                {%- endif -%}
+              </button>
+
               {%- if current_variant.available -%}
-                <span data-add-text>AJOUTER AU PANIER</span>
-                <span class="pdp-add-btn__price" data-add-price>— {{ current_variant.price | money }}</span>
-              {%- else -%}
-                <span data-add-text>ÉPUISÉ</span>
+                <button
+                  type="submit"
+                  name="checkout"
+                  class="tornado-btn tornado-btn--gold tornado-pdp__buy-now-btn font-bold uppercase tracking-wider"
+                >
+                  ⚡ ACHETER MAINTENANT
+                </button>
               {%- endif -%}
-            </button>
+            </div>
           </div>
 
           {%- comment -%} Wishlist {%- endcomment -%}
