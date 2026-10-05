@@ -9,9 +9,9 @@
   --tornado-bg-elevated: #1F1F1F;      /* Modals & Cart Drawer */
   --tornado-bg-overlay: rgba(10, 10, 10, 0.88);
 
-  --tornado-text-primary: #FFFFFF;     /* Pure White (AA/AAA WCAG 21:1) */
-  --tornado-text-secondary: #A0A0A0;   /* Muted Subtitles (AA WCAG 8.5:1) */
-  --tornado-text-muted: #666666;       /* Discret details */
+  --tornado-text-primary: #FFFFFF;     /* Pure White (WCAG AAA 21:1) */
+  --tornado-text-secondary: #D1D5DB;   /* High Contrast Light Silver (WCAG AAA 14:1) */
+  --tornado-text-muted: #9CA3AF;       /* Clear Discret Details (WCAG AA 7:1) */
   --tornado-text-inverse: #0A0A0A;     /* Dark Text on Gold */
 
   --tornado-gold-main: #D4AF37;        /* Champagne Gold Metallic */

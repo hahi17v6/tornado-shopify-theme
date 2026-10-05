@@ -4,7 +4,7 @@
       "type": "main-product"
     },
     "recommendations": {
-      "type": "featured-collection"
+      "type": "most-wanted"
     }
   },
   "order": [
