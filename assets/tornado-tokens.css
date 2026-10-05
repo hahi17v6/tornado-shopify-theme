@@ -1,0 +1,107 @@
+/* ==========================================================================
+   TORNADO LUXURY STREETWEAR — DESIGN SYSTEM TOKENS (PHASE 2)
+   ========================================================================== */
+
+:root {
+  /* --- COLOR SYSTEM --- */
+  --tornado-bg-main: #0A0A0A;          /* Obsidian Deep Black */
+  --tornado-bg-surface: #141414;       /* Surface Cards & Panels */
+  --tornado-bg-elevated: #1F1F1F;      /* Modals & Cart Drawer */
+  --tornado-bg-overlay: rgba(10, 10, 10, 0.88);
+
+  --tornado-text-primary: #FFFFFF;     /* Pure White (WCAG AAA 21:1) */
+  --tornado-text-secondary: #D1D5DB;   /* High Contrast Light Silver (WCAG AAA 14:1) */
+  --tornado-text-muted: #9CA3AF;       /* Clear Discret Details (WCAG AA 7:1) */
+  --tornado-text-inverse: #0A0A0A;     /* Dark Text on Gold */
+
+  --tornado-gold-main: #D4AF37;        /* Champagne Gold Metallic */
+  --tornado-gold-light: #F7D774;       /* Luminous Gold Highlight */
+  --tornado-gold-dark: #997A15;        /* Deep Gold Accent */
+  --tornado-gold-gradient: linear-gradient(135deg, #F7D774 0%, #D4AF37 50%, #997A15 100%);
+  --tornado-gold-glow: 0 0 25px rgba(212, 175, 55, 0.28);
+
+  --tornado-border-subtle: #262626;
+  --tornado-border-strong: #3A3A3A;
+  --tornado-border-gold: rgba(212, 175, 55, 0.4);
+
+  --tornado-color-error: #FF4D4D;
+  --tornado-color-success: #00E676;
+  --tornado-color-warning: #FFB300;
+
+  /* --- TYPOGRAPHY SCALE --- */
+  --font-family-display: 'Syne', 'Outfit', sans-serif;
+  --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 2rem;      /* 32px */
+  --font-size-4xl: 2.75rem;   /* 44px */
+  --font-size-hero: 4.5rem;   /* 72px */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.08em;
+  --letter-spacing-widest: 0.18em;
+
+  /* --- SPACING SCALE --- */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4.5rem;   /* 72px */
+
+  /* --- RADII --- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* --- SHADOWS --- */
+  --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.7);
+  --shadow-gold: 0 8px 25px rgba(212, 175, 55, 0.35);
+
+  /* --- TRANSITIONS & ANIMATIONS --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 500ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* --- Z-INDEX SYSTEM --- */
+  --z-back: -1;
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-overlay: 300;
+  --z-drawer: 310;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* --- BREAKPOINTS (FOR REFERENCE) --- */
+  --bp-mobile: 480px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-widescreen: 1440px;
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,11 @@
+{%- comment -%}
+  Price Display Snippet (Supports Promotions & Currency)
+{%- endcomment -%}
+<div class="price-container">
+  {%- if product.compare_at_price > product.price -%}
+    <span class="price price--sale text-gold-gradient">{{ product.price | money }}</span>
+    <span class="price price--compare">{{ product.compare_at_price | money }}</span>
+  {%- else -%}
+    <span class="price price--regular">{{ product.price | money }}</span>
+  {%- endif -%}
+</div>

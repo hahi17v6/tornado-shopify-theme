@@ -1,0 +1,40 @@
+{
+  "general": {
+    "meta": {
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "404 — PAGE INTROUVABLE",
+      "subtext": "La page que vous cherchez a disparu dans la tempête.",
+      "link": "RETOURNER À LA BOUTIQUE"
+    },
+    "search": {
+      "placeholder": "Rechercher un produit, une veste, sneakers...",
+      "submit": "Rechercher",
+      "no_results": "Aucun produit ne correspond à votre recherche.",
+      "results_count": "{{ count }} résultats pour \"{{ terms }}\""
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "AJOUTER AU PANIER",
+      "sold_out": "ÉPUISÉ",
+      "unavailable": "INDISPONIBLE",
+      "quantity": "Quantité",
+      "size_guide": "Guide des Tailles",
+      "description": "Description",
+      "care_instructions": "Composition & Entretien",
+      "shipping_returns": "Livraison & Retours",
+      "limited_stock": "Plus que {{ count }} pièces disponibles !"
+    }
+  },
+  "cart": {
+    "title": "VOTRE PANIER",
+    "empty": "Votre panier est actuellement vide.",
+    "free_shipping_remaining": "Plus que {{ amount }} pour bénéficier de la LIVRAISON GRATUITE !",
+    "free_shipping_reached": "Vous bénéficiez de la LIVRAISON GRATUITE !",
+    "subtotal": "Sous-total",
+    "checkout": "PASSER À LA CAISSE",
+    "view_cart": "VOIR LE PANIER"
+  }
+}

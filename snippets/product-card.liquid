@@ -1,0 +1,51 @@
+{%- comment -%}
+  Component Carte Produit TORNADO
+{%- endcomment -%}
+<div class="product-card" data-product-id="{{ card_product.id }}">
+  <div class="product-card__image-wrapper">
+    <a href="{{ card_product.url }}">
+      {%- if card_product.featured_media -%}
+        <img src="{{ card_product.featured_media | image_url: width: 600 }}"
+             alt="{{ card_product.featured_media.alt | escape }}"
+             loading="lazy"
+             width="600"
+             height="800"
+             class="product-card__image product-card__image--primary">
+        {%- if card_product.media[1] != blank -%}
+          <img src="{{ card_product.media[1] | image_url: width: 600 }}"
+               alt="{{ card_product.title | escape }}"
+               loading="lazy"
+               width="600"
+               height="800"
+               class="product-card__image product-card__image--hover">
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </a>
+    
+    <div class="product-card__badges">
+      {%- if card_product.tags contains 'NEW' or card_product.tags contains 'Drop' -%}
+        <span class="badge-tornado badge-drop">NEW DROP</span>
+      {%- elsif card_product.compare_at_price > card_product.price -%}
+        <span class="badge-tornado badge-sale">PROMO</span>
+      {%- elsif card_product.tags contains 'LIMITED' -%}
+        <span class="badge-tornado badge-limited">LIMITED</span>
+      {%- endif -%}
+    </div>
+
+    <button type="button" class="product-card__wishlist-btn" data-wishlist-add="{{ card_product.id }}" aria-label="Ajouter aux favoris">
+      {% render 'icon-heart' %}
+    </button>
+  </div>
+
+  <div class="product-card__info">
+    <span class="product-card__vendor">{{ card_product.vendor | default: 'TORNADO' }}</span>
+    <h3 class="product-card__title">
+      <a href="{{ card_product.url }}">{{ card_product.title }}</a>
+    </h3>
+    <div class="product-card__price">
+      {% render 'price-display', product: card_product %}
+    </div>
+  </div>
+</div>

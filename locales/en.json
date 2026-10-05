@@ -1,0 +1,40 @@
+{
+  "general": {
+    "meta": {
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "404 — PAGE NOT FOUND",
+      "subtext": "The page you are looking for disappeared in the storm.",
+      "link": "RETURN TO SHOP"
+    },
+    "search": {
+      "placeholder": "Search products, jacket, sneakers...",
+      "submit": "Search",
+      "no_results": "No products match your search.",
+      "results_count": "{{ count }} results for \"{{ terms }}\""
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "ADD TO CART",
+      "sold_out": "SOLD OUT",
+      "unavailable": "UNAVAILABLE",
+      "quantity": "Quantity",
+      "size_guide": "Size Guide",
+      "description": "Description",
+      "care_instructions": "Composition & Care",
+      "shipping_returns": "Shipping & Returns",
+      "limited_stock": "Only {{ count }} items left in stock!"
+    }
+  },
+  "cart": {
+    "title": "YOUR CART",
+    "empty": "Your cart is currently empty.",
+    "free_shipping_remaining": "Add {{ amount }} more to unlock FREE SHIPPING!",
+    "free_shipping_reached": "You unlocked FREE SHIPPING!",
+    "subtotal": "Subtotal",
+    "checkout": "PROCEED TO CHECKOUT",
+    "view_cart": "VIEW CART"
+  }
+}

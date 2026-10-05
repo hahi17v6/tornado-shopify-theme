@@ -1,0 +1,29 @@
+{%- comment -%}
+  TORNADO — WISHLIST GRID SNIPPET (PHASE 7)
+  Affiche les articles sauvegardés dans la wishlist via JS / localStorage / Profil
+{%- endcomment -%}
+
+<div class="wishlist-container" data-wishlist-grid>
+  <!-- Empty State (Shown when no items) -->
+  <div class="wishlist-empty text-center padding-v-2xl tornado-glass-card" data-wishlist-empty>
+    <div class="margin-bottom-md">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold margin-auto">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+    </div>
+    <h3 class="font-heading text-xl uppercase tracking-wider text-white margin-bottom-xs">
+      VOTRE WISHLIST EST VIDE
+    </h3>
+    <p class="text-xs text-secondary margin-bottom-lg max-w-sm margin-auto">
+      Explorez les collections TORNADO et cliquez sur le cœur ♡ pour ajouter vos pièces préférées à votre liste d'envies.
+    </p>
+    <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="tornado-btn tornado-btn--gold text-xs font-bold uppercase tracking-wider">
+      DÉCOUVRIR LES PIÈCES EXCLUSIVES
+    </a>
+  </div>
+
+  <!-- Wishlist Items Grid -->
+  <div class="grid grid-4-col gap-md" data-wishlist-items style="display: none;">
+    {%- comment -%} Rendered dynamically via JavaScript in assets/tornado-theme.js {%- endcomment -%}
+  </div>
+</div>

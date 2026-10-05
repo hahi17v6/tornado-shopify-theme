@@ -1,0 +1,126 @@
+{%- comment -%}
+  TORNADO — ORDER DETAILS (PHASE 9)
+  Section de détail d'une commande native Shopify OS 2.0
+  avec timeline de suivi 5 étapes et guide d'entretien post-achat
+{%- endcomment -%}
+
+<div class="tornado-customer-order container padding-v-2xl">
+  <!-- Header -->
+  <div class="margin-bottom-lg">
+    <a href="{{ routes.account_url }}" class="text-xs text-gold hover-gold font-bold uppercase inline-flex items-center gap-xs margin-bottom-md">
+      &larr; RETOUR À MES COMMANDES
+    </a>
+    <h1 class="font-heading text-2xl uppercase tracking-widest text-white margin-bottom-xs">
+      COMMANDE {{ order.name }}
+    </h1>
+    <p class="text-xs text-secondary">
+      Passée le {{ order.created_at | time_tag: format: 'date_at_time' }} &bull; 
+      Statut : <span class="text-gold font-bold">{{ order.financial_status_label }}</span> / <span class="text-white font-bold">{{ order.fulfillment_status_label }}</span>
+    </p>
+  </div>
+
+  <!-- Timeline Visuelle 5 Étapes -->
+  {% render 'order-timeline', order: order %}
+
+  {%- if order.cancelled -%}
+    <div class="tornado-badge tornado-badge--danger margin-bottom-lg w-full text-center">
+      Commande annulée le {{ order.cancelled_at | time_tag: format: 'date_at_time' }}. Raison : {{ order.cancel_reason_label }}
+    </div>
+  {%- endif -%}
+
+  <div class="grid grid-2-col gap-xl">
+    <!-- Line Items Table -->
+    <div class="order-items-col">
+      <div class="tornado-glass-card padding-lg">
+        <h2 class="font-heading text-md uppercase text-white margin-bottom-md border-bottom padding-bottom-xs">
+          ARTICLES COMMANDÉS
+        </h2>
+        <div class="order-items-list">
+          {%- for line_item in order.line_items -%}
+            <div class="order-item flex items-center gap-md padding-v-sm border-bottom border-subtle">
+              {%- if line_item.image != blank -%}
+                <img src="{{ line_item.image | image_url: width: 120 }}" alt="{{ line_item.title | escape }}" width="60" height="80" class="order-item__img border-radius-sm">
+              {%- endif -%}
+              <div class="order-item__details flex-1">
+                <a href="{{ line_item.product.url }}" class="font-bold text-sm text-white hover-gold">{{ line_item.product.title }}</a>
+                {%- unless line_item.product.has_only_default_variant -%}
+                  <div class="text-xs text-secondary">{{ line_item.variant.title }}</div>
+                {%- endunless -%}
+                <div class="text-xs text-secondary margin-top-xs">Qté: {{ line_item.quantity }} &times; {{ line_item.final_price | money }}</div>
+
+                {%- if line_item.fulfillment -%}
+                  <div class="tracking-info margin-top-xs text-xs text-gold">
+                    Expédié le {{ line_item.fulfillment.created_at | time_tag: format: 'date' }}
+                    {%- if line_item.fulfillment.tracking_url -%}
+                      <a href="{{ line_item.fulfillment.tracking_url }}" target="_blank" rel="noopener" class="underline text-white hover-gold font-bold">
+                        SUIVRE MON COLIS ({{ line_item.fulfillment.tracking_company }} #{{ line_item.fulfillment.tracking_number }}) &rarr;
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+              <div class="order-item__price font-mono text-sm font-bold text-white text-right">
+                {{ line_item.final_line_price | money }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <!-- Totals Summary -->
+        <div class="order-totals margin-top-lg border-top padding-top-md text-xs text-secondary">
+          <div class="flex justify-between margin-bottom-xs">
+            <span>Sous-total</span>
+            <span class="font-mono text-white">{{ order.line_items_subtotal_price | money }}</span>
+          </div>
+          {%- for shipping_method in order.shipping_methods -%}
+            <div class="flex justify-between margin-bottom-xs">
+              <span>Livraison ({{ shipping_method.title }})</span>
+              <span class="font-mono text-white">{{ shipping_method.price | money }}</span>
+            </div>
+          {%- endfor -%}
+          {%- for tax_line in order.tax_lines -%}
+            <div class="flex justify-between margin-bottom-xs">
+              <span>Taxes ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</span>
+              <span class="font-mono text-white">{{ tax_line.price | money }}</span>
+            </div>
+          {%- endfor -%}
+          <div class="flex justify-between font-bold text-sm text-gold border-top padding-top-xs margin-top-xs">
+            <span>TOTAL</span>
+            <span class="font-mono text-base text-gold-gradient">{{ order.total_price | money }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Addresses Side -->
+    <div class="order-addresses-col flex flex-column gap-md">
+      <div class="tornado-glass-card padding-lg">
+        <h3 class="font-heading text-md uppercase text-white margin-bottom-sm border-bottom padding-bottom-xs">
+          ADRESSE DE LIVRAISON
+        </h3>
+        <div class="text-xs text-secondary line-height-relaxed">
+          {{ order.shipping_address | format_address }}
+        </div>
+      </div>
+
+      <div class="tornado-glass-card padding-lg">
+        <h3 class="font-heading text-md uppercase text-white margin-bottom-sm border-bottom padding-bottom-xs">
+          ADRESSE DE FACTURATION
+        </h3>
+        <div class="text-xs text-secondary line-height-relaxed">
+          {{ order.billing_address | format_address }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post-Purchase Care & Review Prompt -->
+  {% render 'post-purchase-care', order: order %}
+</div>
+
+{% schema %}
+{
+  "name": "Détails de la Commande",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+{%- comment -%}
+  TORNADO — NEWSLETTER POP-UP MODAL (PHASE 8)
+  Pop-up intelligent avec délai, sauvegarde localStorage et code -10%
+{%- endcomment -%}
+
+<div class="tornado-newsletter-modal" data-newsletter-modal aria-hidden="true" style="display: none;">
+  <div class="newsletter-modal-overlay" data-newsletter-close></div>
+  <div class="newsletter-modal-content tornado-glass-card padding-2xl max-w-md relative text-center">
+    <button type="button" class="newsletter-modal-close text-secondary hover-gold" data-newsletter-close aria-label="Fermer">
+      ✕
+    </button>
+
+    <span class="tornado-badge tornado-badge--gold margin-bottom-xs">OFFRE EXCLUSIVE VIP</span>
+    <h3 class="font-heading text-2xl uppercase tracking-widest text-white margin-bottom-xs">
+      REJOIGNEZ LA STORM
+    </h3>
+    <p class="text-xs text-secondary margin-bottom-md">
+      Profitez de <strong>-10% sur votre 1ère commande</strong> avec le code <strong>STORM10</strong> lors de votre inscription.
+    </p>
+
+    {%- form 'customer', class: 'newsletter-modal-form', id: 'NewsletterFormModal' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,popup_discount">
+      
+      <div class="form-group margin-bottom-sm">
+        <input type="email" name="contact[email]" placeholder="Votre adresse email *" required class="tornado-input w-full">
+      </div>
+
+      <button type="submit" class="tornado-btn tornado-btn--gold text-xs font-bold uppercase w-full padding-v-md margin-bottom-sm">
+        OBTENIR MES -10%
+      </button>
+
+      <button type="button" class="text-xs text-secondary hover-gold underline" data-newsletter-close>
+        Non merci, continuer sans réduction
+      </button>
+    {%- endform -%}
+  </div>
+</div>

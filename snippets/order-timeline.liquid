@@ -1,0 +1,95 @@
+{%- comment -%}
+  TORNADO — ORDER TIMELINE SNIPPET (PHASE 9)
+  Timeline visuelle de suivi de commande en 5 étapes synchronisée avec Shopify
+{%- endcomment -%}
+
+{%- assign fulfillment = order.fulfillment_status -%}
+{%- assign is_cancelled = order.cancelled -%}
+
+{%- assign step_placed = true -%}
+{%- assign step_processing = false -%}
+{%- assign step_shipped = false -%}
+{%- assign step_transit = false -%}
+{%- assign step_delivered = false -%}
+
+{%- if fulfillment == 'fulfilled' -%}
+  {%- assign step_processing = true -%}
+  {%- assign step_shipped = true -%}
+  {%- assign step_transit = true -%}
+  {%- assign step_delivered = true -%}
+{%- elsif fulfillment == 'partial' -%}
+  {%- assign step_processing = true -%}
+  {%- assign step_shipped = true -%}
+  {%- assign step_transit = true -%}
+{%- elsif order.financial_status == 'paid' -%}
+  {%- assign step_processing = true -%}
+{%- endif -%}
+
+<div class="order-timeline-wrapper margin-v-lg padding-lg tornado-glass-card">
+  <h3 class="font-heading text-xs uppercase tracking-widest text-gold margin-bottom-md">
+    ÉTAPES DE LIVRAISON DE LA COMMANDE
+  </h3>
+
+  {%- if is_cancelled -%}
+    <div class="tornado-badge tornado-badge--danger w-full text-center padding-sm">
+      ✖ COMMANDE ANNULÉE LE {{ order.cancelled_at | time_tag: format: 'date' }}
+    </div>
+  {%- else -%}
+    <div class="order-timeline">
+      <!-- Step 1: Placed -->
+      <div class="timeline-step {% if step_placed %}is-complete{% endif %}">
+        <div class="step-icon">
+          {% if step_placed %}✓{% else %}1{% endif %}
+        </div>
+        <div class="step-content">
+          <div class="step-title font-bold text-xs text-white">COMMANDE PASSÉE</div>
+          <div class="step-date text-xs text-secondary">{{ order.created_at | time_tag: format: 'date' }}</div>
+        </div>
+      </div>
+
+      <!-- Step 2: Processing -->
+      <div class="timeline-step {% if step_processing %}is-complete{% else %}is-pending{% endif %}">
+        <div class="step-icon">
+          {% if step_processing %}✓{% else %}2{% endif %}
+        </div>
+        <div class="step-content">
+          <div class="step-title font-bold text-xs text-white">EN PRÉPARATION</div>
+          <div class="step-date text-xs text-secondary">Atelier VIP</div>
+        </div>
+      </div>
+
+      <!-- Step 3: Shipped -->
+      <div class="timeline-step {% if step_shipped %}is-complete{% elsif step_processing %}is-active{% else %}is-pending{% endif %}">
+        <div class="step-icon">
+          {% if step_shipped %}✓{% elsif step_processing %}●{% else %}3{% endif %}
+        </div>
+        <div class="step-content">
+          <div class="step-title font-bold text-xs text-white">EXPÉDIÉE</div>
+          <div class="step-date text-xs text-secondary">Colis prêt</div>
+        </div>
+      </div>
+
+      <!-- Step 4: Transit -->
+      <div class="timeline-step {% if step_transit %}is-complete{% else %}is-pending{% endif %}">
+        <div class="step-icon">
+          {% if step_transit %}✓{% else %}4{% endif %}
+        </div>
+        <div class="step-content">
+          <div class="step-title font-bold text-xs text-white">EN TRANSIT</div>
+          <div class="step-date text-xs text-secondary">Transporteur</div>
+        </div>
+      </div>
+
+      <!-- Step 5: Delivered -->
+      <div class="timeline-step {% if step_delivered %}is-complete{% else %}is-pending{% endif %}">
+        <div class="step-icon">
+          {% if step_delivered %}✓{% else %}5{% endif %}
+        </div>
+        <div class="step-content">
+          <div class="step-title font-bold text-xs text-white">LIVRÉE</div>
+          <div class="step-date text-xs text-secondary">À domicile</div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>

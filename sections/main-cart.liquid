@@ -1,0 +1,228 @@
+{%- comment -%}
+  TORNADO — MAIN CART PAGE (PHASE 6)
+  Section de la page panier complète OS 2.0
+  Disposition 2 colonnes avec mise à jour AJAX synchrone et redirection checkout Shopify
+{%- endcomment -%}
+
+{%- assign free_shipping_threshold_cents = section.settings.free_shipping_threshold | default: 150 | times: 100 -%}
+{%- assign cart_total = cart.total_price -%}
+{%- if cart_total >= free_shipping_threshold_cents -%}
+  {%- assign free_shipping_unlocked = true -%}
+  {%- assign remaining_cents = 0 -%}
+  {%- assign progress_percent = 100 -%}
+{%- else -%}
+  {%- assign free_shipping_unlocked = false -%}
+  {%- assign remaining_cents = free_shipping_threshold_cents | minus: cart_total -%}
+  {%- assign progress_percent = cart_total | times: 100 | divided_by: free_shipping_threshold_cents -%}
+{%- endif -%}
+
+<div class="tornado-cart-page tornado-section container padding-v-xl" data-cart-page>
+  <!-- Page Header -->
+  <div class="cart-page__header margin-bottom-lg text-center">
+    <h1 class="cart-page__title font-heading text-3xl uppercase tracking-widest text-white margin-bottom-xs">
+      VOTRE PANIER
+    </h1>
+    <p class="text-secondary text-sm" data-cart-page-count>
+      {{ cart.item_count }} {{ cart.item_count | pluralize: 'article sélectionné', 'articles sélectionnés' }}
+    </p>
+  </div>
+
+  {%- if cart.item_count > 0 -%}
+    <!-- Free Shipping Progress Bar -->
+    {%- if section.settings.show_free_shipping_bar -%}
+      <div class="cart-page__shipping-bar margin-bottom-xl" data-shipping-bar-container>
+        <div class="cart-page__shipping-text text-sm text-center font-bold margin-bottom-xs" data-shipping-bar-text>
+          {%- if free_shipping_unlocked -%}
+            <span class="text-gold">✨ FÉLICITATIONS ! LIVRAISON GRATUITE UNLOCKED</span>
+          {%- else -%}
+            <span>Plus que <strong class="text-gold-gradient" data-shipping-remaining>{{ remaining_cents | money }}</strong> pour bénéficier de la <strong>livraison offerte</strong></span>
+          {%- endif -%}
+        </div>
+        <div class="cart-drawer__progress-track">
+          <div class="cart-drawer__progress-fill" data-shipping-bar-fill style="width: {{ progress_percent }}%;"></div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- Main 2-Column Cart Grid -->
+    <div class="cart-page__grid">
+      <!-- Left Column: Items List -->
+      <div class="cart-page__items-col">
+        <div class="cart-page__table-header hidden-mobile text-xs font-bold text-secondary uppercase tracking-wider margin-bottom-sm">
+          <span>PRODUIT</span>
+          <span>PRIX</span>
+          <span>QUANTITÉ</span>
+          <span>TOTAL</span>
+        </div>
+
+        <div class="cart-page__items-list" data-cart-items-container>
+          {%- for item in cart.items -%}
+            <div class="cart-page-item" data-cart-item-key="{{ item.key }}">
+              <!-- Thumbnail -->
+              <a href="{{ item.url }}" class="cart-page-item__img-link">
+                {%- if item.image != blank -%}
+                  <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.title | escape }}" loading="lazy" width="100" height="130" class="cart-page-item__img">
+                {%- else -%}
+                  <div class="cart-page-item__img-placeholder">TORNADO</div>
+                {%- endif -%}
+              </a>
+
+              <!-- Info -->
+              <div class="cart-page-item__info">
+                <a href="{{ item.url }}" class="cart-page-item__title font-bold text-base text-white hover-gold">
+                  {{ item.product.title }}
+                </a>
+                {%- unless item.product.has_only_default_variant -%}
+                  <div class="cart-page-item__variant text-xs text-secondary margin-v-xs">
+                    {{ item.variant.title }}
+                  </div>
+                {%- endunless -%}
+
+                {%- if item.line_level_discount_allocations.size > 0 -%}
+                  <div class="cart-page-item__discounts text-xs text-gold">
+                    {%- for discount in item.line_level_discount_allocations -%}
+                      <span>🏷️ {{ discount.discount_application.title }} (-{{ discount.amount | money }})</span>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+
+                <button type="button" class="cart-page-item__remove-btn text-xs text-secondary hover-gold inline-flex items-center gap-xs margin-top-xs" data-cart-remove="{{ item.key }}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                  <span>SUPPRIMER</span>
+                </button>
+              </div>
+
+              <!-- Price -->
+              <div class="cart-page-item__unit-price text-sm text-secondary font-mono hidden-mobile">
+                {{ item.final_price | money }}
+              </div>
+
+              <!-- Quantity Selector -->
+              <div class="cart-page-item__qty">
+                <div class="cart-item__qty-picker" data-qty-container>
+                  <button type="button" class="cart-item__qty-btn" data-qty-adjust="minus" data-key="{{ item.key }}" aria-label="Réduire la quantité">-</button>
+                  <span class="cart-item__qty-num font-mono text-sm font-bold text-white" data-qty-value>{{ item.quantity }}</span>
+                  <button type="button" class="cart-item__qty-btn" data-qty-adjust="plus" data-key="{{ item.key }}" aria-label="Augmenter la quantité">+</button>
+                </div>
+              </div>
+
+              <!-- Total Price -->
+              <div class="cart-page-item__total-price text-base font-bold font-mono text-white text-right">
+                {{ item.final_line_price | money }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="cart-page__actions margin-top-lg">
+          <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="tornado-btn tornado-btn--outline text-xs font-bold uppercase">
+            &larr; CONTINUER MES ACHATS
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Order Summary Card -->
+      <div class="cart-page__summary-col">
+        <div class="cart-summary-card tornado-glass-card padding-lg">
+          <h2 class="cart-summary__title font-heading text-lg uppercase tracking-wider text-white margin-bottom-md border-bottom padding-bottom-sm">
+            RÉSUMÉ DE LA COMMANDE
+          </h2>
+
+          <div class="cart-summary__row">
+            <span class="text-sm text-secondary">Sous-total</span>
+            <span class="text-base font-bold text-white font-mono" data-cart-subtotal>{{ cart.total_price | money }}</span>
+          </div>
+
+          {%- if cart.cart_level_discount_applications.size > 0 -%}
+            <div class="cart-summary__row text-gold text-sm font-bold margin-v-xs">
+              <span>Réductions applicables</span>
+              <div>
+                {%- for discount in cart.cart_level_discount_applications -%}
+                  <div>{{ discount.title }}: -{{ discount.total_allocated_amount | money }}</div>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="cart-summary__row margin-v-sm">
+            <span class="text-sm text-secondary">Livraison</span>
+            <span class="text-sm text-gold font-bold">
+              {%- if free_shipping_unlocked -%}
+                OFFERTE
+              {%- else -%}
+                Calculée au checkout
+              {%- endif -%}
+            </span>
+          </div>
+
+          <!-- Total Row -->
+          <div class="cart-summary__row cart-summary__row--total border-top padding-top-md margin-top-md">
+            <span class="text-base font-bold uppercase text-white">TOTAL ESTIMÉ</span>
+            <span class="text-xl font-bold font-heading text-gold-gradient" data-cart-total>{{ cart.total_price | money }}</span>
+          </div>
+
+          <p class="text-xs text-secondary margin-v-sm text-center">
+            Taxes incluses. Codes promo et expédition appliqués à l'étape suivante.
+          </p>
+
+          <!-- Checkout Form Submit -->
+          <form action="{{ routes.cart_url }}" method="post" class="margin-top-md">
+            <button type="submit" name="checkout" class="tornado-btn tornado-btn--gold text-base font-bold uppercase tracking-wider w-full padding-v-md">
+              COMMANDER &bull; CHECKOUT
+            </button>
+          </form>
+
+          <!-- Reassurance Badges -->
+          <div class="cart-summary__trust margin-top-lg text-xs text-secondary">
+            <div class="trust-item margin-bottom-xs">🔒 Paiement 100% Sécurisé via Stripe / Shopify</div>
+            <div class="trust-item margin-bottom-xs">⚡ Expédition Express sous 24-48H</div>
+            <div class="trust-item">↩️ Retours gratuits pendant 14 jours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- else -%}
+    <!-- Empty Cart State -->
+    <div class="cart-page__empty text-center padding-v-2xl">
+      <div class="margin-bottom-md">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold margin-auto">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+      </div>
+      <h2 class="font-heading text-2xl uppercase tracking-wider text-white margin-bottom-xs">
+        VOTRE PANIER EST VIDE
+      </h2>
+      <p class="text-secondary text-sm margin-bottom-xl max-w-md margin-auto">
+        Découvrez notre catalogue exclusif d'articles streetwear haut de gamme.
+      </p>
+      <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="tornado-btn tornado-btn--primary text-sm font-bold uppercase tracking-wider">
+        DÉCOUVRIR LE CATALOGUE
+      </a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Page Panier TORNADO",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_free_shipping_bar",
+      "label": "Afficher la barre de livraison gratuite",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Seuil de livraison gratuite (€)",
+      "default": 150
+    }
+  ]
+}
+{% endschema %}
