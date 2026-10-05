@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TORNADO — Fiche produit. Pièce d'exception en édition limitée.">
+  <title>Produit — TORNADO</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%23C9A94E'/><text x='16' y='22' text-anchor='middle' font-size='18' font-weight='bold' fill='%230A0A0A'>T</text></svg>">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="header__announce">
+      🚀 LIVRAISON GRATUITE EN FRANCE DÈS 150 € — ACCÈS ANTICIPÉ DROPS
+    </div>
+    <div class="header__main container">
+      <button class="header__burger" onclick="openMobileMenu()" aria-label="Menu">☰</button>
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon">T</span>
+        <span>TORNADO</span>
+      </a>
+      <nav class="header__nav">
+        <a href="collection.html">SHOP</a>
+        <a href="collection.html">DISCOVER</a>
+        <a href="collection.html">MARQUES</a>
+      </nav>
+      <div class="header__actions">
+        <button class="header__action-btn" data-cart-toggle aria-label="Panier">
+          🛒
+          <span class="header__cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== BREADCRUMB ========== -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a>
+      <span class="breadcrumb__sep">›</span>
+      <a href="collection.html">Catalogue</a>
+      <span class="breadcrumb__sep">›</span>
+      <span class="breadcrumb__product" style="color:var(--text-primary)">Produit</span>
+    </div>
+  </div>
+
+  <!-- ========== PRODUCT DETAIL ========== -->
+  <section class="product-page">
+    <div class="container">
+      <div class="product-detail">
+        <!-- Gallery -->
+        <div class="product-gallery">
+          <div class="product-gallery__main">
+            <span class="product-gallery__main-icon">🧥</span>
+            <span style="font-family:var(--font-display);font-size:14px;font-weight:800;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase">TORNADO EXCLUSIVE</span>
+          </div>
+          <div class="product-gallery__thumbs">
+            <div class="product-gallery__thumb active">📸</div>
+            <div class="product-gallery__thumb">📐</div>
+            <div class="product-gallery__thumb">🏷️</div>
+            <div class="product-gallery__thumb">📦</div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="product-info">
+          <span class="product-info__brand">TORNADO LABS</span>
+          <h1 class="product-info__name">Obsidian Heavyweight Hoodie</h1>
+          <div class="product-info__price">
+            <span class="gold-text">189,00 €</span>
+          </div>
+          <p class="product-info__desc">
+            Hoodie heavyweight premium en coton bio 450 GSM. Coupe oversized, coutures renforcées, broderie logo TORNADO en relief sur la poitrine. Capuche doublée, poche kangourou zippée. Édition limitée numérotée — seulement 200 pièces produites.
+          </p>
+
+          <!-- Size Selector -->
+          <div class="product-info__label">TAILLE</div>
+          <div class="product-sizes">
+            <button class="product-size">XS</button>
+            <button class="product-size">S</button>
+            <button class="product-size active">M</button>
+            <button class="product-size">L</button>
+            <button class="product-size">XL</button>
+            <button class="product-size">XXL</button>
+          </div>
+
+          <!-- Quantity -->
+          <div class="product-info__label">QUANTITÉ</div>
+          <div class="product-qty">
+            <button class="qty-minus">−</button>
+            <span class="product-qty__val">1</span>
+            <button class="qty-plus">+</button>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="product-actions">
+            <button class="btn btn-add-cart">🛒 AJOUTER AU PANIER</button>
+            <button class="btn btn-buy-now">⚡ ACHETER MAINTENANT</button>
+          </div>
+
+          <!-- Accordion Details -->
+          <div class="product-details-accordion">
+            <div class="accordion-item open">
+              <button class="accordion-header">Description & Détails</button>
+              <div class="accordion-body">
+                <div class="accordion-body__inner">
+                  <p>• Coton biologique premium 450 GSM</p>
+                  <p>• Coupe oversized streetwear</p>
+                  <p>• Broderie logo TORNADO en relief</p>
+                  <p>• Capuche doublée polaire</p>
+                  <p>• Poche kangourou avec zip YKK</p>
+                  <p>• Bords-côtes nervurés renforcés</p>
+                  <p>• Édition limitée : 200 exemplaires numérotés</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header">Guide des Tailles</button>
+              <div class="accordion-body">
+                <div class="accordion-body__inner">
+                  <p>XS : Poitrine 96cm — Longueur 68cm</p>
+                  <p>S : Poitrine 102cm — Longueur 70cm</p>
+                  <p>M : Poitrine 108cm — Longueur 72cm</p>
+                  <p>L : Poitrine 114cm — Longueur 74cm</p>
+                  <p>XL : Poitrine 120cm — Longueur 76cm</p>
+                  <p>XXL : Poitrine 126cm — Longueur 78cm</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header">Livraison & Retours</button>
+              <div class="accordion-body">
+                <div class="accordion-body__inner">
+                  <p>🚚 Livraison gratuite en France dès 150 €</p>
+                  <p>📦 Expédition sous 24-48h ouvrées</p>
+                  <p>🔄 Retours gratuits sous 30 jours</p>
+                  <p>🌍 Livraison internationale disponible</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      <div class="related-section">
+        <div class="section__header">
+          <div>
+            <span class="section__badge">VOUS AIMEREZ AUSSI</span>
+            <h2 class="section__title">PRODUITS SIMILAIRES</h2>
+          </div>
+          <a href="collection.html" class="section__link gold-text">VOIR TOUT →</a>
+        </div>
+        <div class="product-grid related-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name">TORNADO</div>
+          <p class="footer__brand-desc">Luxury streetwear pour une nouvelle génération. Pièces uniques, drops limités, artisanat d'exception.</p>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Shop</h4>
+          <ul>
+            <li><a href="collection.html">Tout voir</a></li>
+            <li><a href="collection.html">Sweats & Hoodies</a></li>
+            <li><a href="collection.html">Vestes</a></li>
+            <li><a href="collection.html">Sneakers</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Infos</h4>
+          <ul>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Livraison</a></li>
+            <li><a href="#">Retours</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Légal</h4>
+          <ul>
+            <li><a href="#">CGV</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 TORNADO. Tous droits réservés.</span>
+        <div class="footer__socials">
+          <a href="#">📸</a>
+          <a href="#">🐦</a>
+          <a href="#">📱</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== CART DRAWER ========== -->
+  <div class="cart-overlay" onclick="closeCartDrawer()"></div>
+  <aside class="cart-drawer">
+    <div class="cart-drawer__header">
+      <h3 class="cart-drawer__title">🛒 Mon Panier</h3>
+      <button class="cart-drawer__close" onclick="closeCartDrawer()">✕</button>
+    </div>
+    <div class="cart-drawer__body">
+      <div class="cart-drawer__empty">
+        <div class="cart-drawer__empty-icon">🛒</div>
+        <p>Votre panier est vide</p>
+      </div>
+    </div>
+    <div class="cart-drawer__footer">
+      <div class="shipping-progress">
+        <span class="shipping-progress__text">Plus que 150,00 € pour la livraison gratuite</span>
+        <div class="shipping-progress__bar"><div class="shipping-progress__fill" style="width:0%"></div></div>
+      </div>
+      <div class="cart-drawer__subtotal">
+        <span>Sous-total</span>
+        <span class="cart-drawer__subtotal-val gold-text">0,00 €</span>
+      </div>
+      <button class="btn btn-buy-now cart-drawer__checkout" onclick="showToast('Redirection vers le paiement sécurisé...')">⚡ PASSER COMMANDE</button>
+      <p class="cart-drawer__shipping">Livraison estimée : 2-4 jours ouvrés</p>
+    </div>
+  </aside>
+
+  <!-- ========== MOBILE MENU ========== -->
+  <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-menu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__brand">TORNADO</span>
+      <button class="mobile-menu__close" onclick="closeMobileMenu()">✕</button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="collection.html" class="mobile-menu__link">SHOP</a>
+      <a href="collection.html" class="mobile-menu__sublink">— Sweats & Hoodies</a>
+      <a href="collection.html" class="mobile-menu__sublink">— Vestes & Manteaux</a>
+      <a href="collection.html" class="mobile-menu__sublink">— Sneakers</a>
+      <a href="collection.html" class="mobile-menu__sublink">— Accessoires</a>
+      <a href="collection.html" class="mobile-menu__link gold-text">DISCOVER DROPS</a>
+      <a href="collection.html" class="mobile-menu__link">MARQUES</a>
+    </nav>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TORNADO — Haute couture urbaine et pièces d'exception. Éditions numérotées en tirage limité.">
+  <title>TORNADO — Luxury Streetwear</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='%23C9A94E'/><text x='16' y='22' text-anchor='middle' font-size='18' font-weight='bold' fill='%230A0A0A'>T</text></svg>">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="header__announce">
+      🚀 LIVRAISON GRATUITE EN FRANCE DÈS 150 € — ACCÈS ANTICIPÉ DROPS
+    </div>
+    <div class="header__main container">
+      <button class="header__burger" onclick="openMobileMenu()" aria-label="Menu">☰</button>
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon">T</span>
+        <span>TORNADO</span>
+      </a>
+      <nav class="header__nav">
+        <a href="collection.html">SHOP</a>
+        <a href="collection.html">DISCOVER</a>
+        <a href="collection.html">MARQUES</a>
+      </nav>
+      <div class="header__actions">
+        <button class="header__action-btn" data-cart-toggle aria-label="Panier">
+          🛒
+          <span class="header__cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__content container">
+      <span class="hero__badge">NOUVEAU DROP 2026</span>
+      <h1 class="hero__title">
+        <span>THE STORM OF</span>
+        <span><span class="gold-text">LUXURY</span> STREETWEAR</span>
+      </h1>
+      <p class="hero__sub">Haute couture urbaine et pièces d'exception. Éditions numérotées en tirage limité. Créé pour ceux qui refusent l'ordinaire.</p>
+      <div class="hero__actions">
+        <a href="collection.html" class="btn btn-primary">SHOP NOW →</a>
+        <a href="collection.html" class="btn btn-secondary">DISCOVER THE DROP</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MOST WANTED ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <div>
+          <span class="section__badge">🔥 POPULAIRE</span>
+          <h2 class="section__title">MOST WANTED — SÉLECTION EXCLUSIVE</h2>
+        </div>
+        <a href="collection.html" class="section__link gold-text">VOIR TOUT →</a>
+      </div>
+      <div class="product-grid grid-most-wanted"></div>
+    </div>
+  </section>
+
+  <!-- ========== NEW DROPS ========== -->
+  <section class="section" style="background: var(--bg-surface);">
+    <div class="container">
+      <div class="section__header">
+        <div>
+          <span class="section__badge">⚡ NOUVEAU</span>
+          <h2 class="section__title">DROP VOL. 01 — OBSIDIAN COLLECTION</h2>
+        </div>
+        <a href="collection.html" class="section__link gold-text">DÉCOUVRIR →</a>
+      </div>
+      <div class="product-grid grid-new-drops"></div>
+    </div>
+  </section>
+
+  <!-- ========== FLASH SALE ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="flash-banner">
+        <div class="flash-banner__info">
+          <span class="section__badge" style="color: var(--red-sale);">⏰ VENTE FLASH</span>
+          <h3>JUSQU'À -30% SUR LES ARCHIVES</h3>
+          <p style="color: var(--text-secondary); font-size: 14px; margin-top: 8px;">Offre limitée — Fin ce soir à minuit</p>
+          <div class="flash-banner__timer flash-timer">
+            <div class="flash-banner__timer-block">
+              <span class="flash-banner__timer-num" data-h>00</span>
+              <span class="flash-banner__timer-label">Heures</span>
+            </div>
+            <div class="flash-banner__timer-block">
+              <span class="flash-banner__timer-num" data-m>00</span>
+              <span class="flash-banner__timer-label">Minutes</span>
+            </div>
+            <div class="flash-banner__timer-block">
+              <span class="flash-banner__timer-num" data-s>00</span>
+              <span class="flash-banner__timer-label">Secondes</span>
+            </div>
+          </div>
+        </div>
+        <a href="collection.html" class="btn btn-primary">SHOPPER LES SOLDES →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NEWSLETTER ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="newsletter">
+        <h2 class="newsletter__title">REJOINS <span class="gold-text">THE STORM</span></h2>
+        <p class="newsletter__sub">Inscris-toi pour recevoir les drops en avant-première, des offres exclusives et du contenu réservé aux membres.</p>
+        <form class="newsletter__form" onsubmit="event.preventDefault(); showToast('Inscription confirmée ! Bienvenue dans The Storm 🌪️')">
+          <input type="email" class="newsletter__input" placeholder="ton@email.com" required>
+          <button type="submit" class="btn btn-primary">S'INSCRIRE</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-name">TORNADO</div>
+          <p class="footer__brand-desc">Luxury streetwear pour une nouvelle génération. Pièces uniques, drops limités, artisanat d'exception.</p>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Shop</h4>
+          <ul>
+            <li><a href="collection.html">Tout voir</a></li>
+            <li><a href="collection.html">Sweats & Hoodies</a></li>
+            <li><a href="collection.html">Vestes</a></li>
+            <li><a href="collection.html">Sneakers</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Infos</h4>
+          <ul>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Livraison</a></li>
+            <li><a href="#">Retours</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4 class="footer__col-title">Légal</h4>
+          <ul>
+            <li><a href="#">CGV</a></li>
+            <li><a href="#">Politique de confidentialité</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 TORNADO. Tous droits réservés.</span>
+        <div class="footer__socials">
+          <a href="#">📸</a>
+          <a href="#">🐦</a>
+          <a href="#">📱</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== CART DRAWER ========== -->
+  <div class="cart-overlay" onclick="closeCartDrawer()"></div>
+  <aside class="cart-drawer">
+    <div class="cart-drawer__header">
+      <h3 class="cart-drawer__title">🛒 Mon Panier</h3>
+      <button class="cart-drawer__close" onclick="closeCartDrawer()">✕</button>
+    </div>
+    <div class="cart-drawer__body">
+      <div class="cart-drawer__empty">
+        <div class="cart-drawer__empty-icon">🛒</div>
+        <p>Votre panier est vide</p>
+      </div>
+    </div>
+    <div class="cart-drawer__footer">
+      <div class="shipping-progress">
+        <span class="shipping-progress__text">Plus que 150,00 € pour la livraison gratuite</span>
+        <div class="shipping-progress__bar"><div class="shipping-progress__fill" style="width:0%"></div></div>
+      </div>
+      <div class="cart-drawer__subtotal">
+        <span>Sous-total</span>
+        <span class="cart-drawer__subtotal-val gold-text">0,00 €</span>
+      </div>
+      <button class="btn btn-buy-now cart-drawer__checkout" onclick="showToast('Redirection vers le paiement sécurisé...')">⚡ PASSER COMMANDE</button>
+      <p class="cart-drawer__shipping">Livraison estimée : 2-4 jours ouvrés</p>
+    </div>
+  </aside>
+
+  <!-- ========== MOBILE MENU ========== -->
+  <div class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+  <aside class="mobile-menu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__brand">TORNADO</span>
+      <button class="mobile-menu__close" onclick="closeMobileMenu()">✕</button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="collection.html" class="mobile-menu__link">SHOP</a>
+      <a href="collection.html" class="mobile-menu__sublink">— Sweats & Hoodies</a>
+      <a href="collection.html" class="mobile-menu__sublink">— Vestes & Manteaux</a>
+      <a href="collection.html" class="mobile-menu__sublink">— Sneakers</a>
+      <a href="collection.html" class="mobile-menu__sublink">— Accessoires</a>
+      <a href="collection.html" class="mobile-menu__link gold-text">DISCOVER DROPS</a>
+      <a href="collection.html" class="mobile-menu__link">MARQUES</a>
+    </nav>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>
