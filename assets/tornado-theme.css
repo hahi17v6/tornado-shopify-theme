@@ -2220,3 +2220,93 @@ img {
   width: 90%;
   max-width: 600px;
 }
+
+/* ==========================================================================
+   FOOTER STYLES
+   ========================================================================== */
+.tornado-footer {
+  background-color: #0A0A0A;
+  border-top: 1px solid #262626;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  color: #D1D5DB;
+  margin-top: 4rem;
+}
+
+.tornado-footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 900px) {
+  .tornado-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.tornado-footer__title {
+  color: #D4AF37;
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.25rem;
+}
+
+.tornado-footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tornado-footer__list li {
+  margin-bottom: 0.6rem;
+}
+
+.tornado-footer__list a {
+  color: #9CA3AF;
+  font-size: 0.875rem;
+  transition: color 150ms ease;
+}
+
+.tornado-footer__list a:hover {
+  color: #D4AF37;
+}
+
+.tornado-footer__form-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tornado-footer__input {
+  flex: 1;
+  background: #141414;
+  border: 1px solid #262626;
+  border-radius: 4px;
+  padding: 0.6rem 1rem;
+  color: #FFFFFF;
+  font-size: 0.875rem;
+}
+
+.tornado-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #1A1A1A;
+}
+
+.tornado-footer__select {
+  background: #141414;
+  border: 1px solid #262626;
+  border-radius: 4px;
+  color: #D1D5DB;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8125rem;
+}
