@@ -15,6 +15,22 @@ const PRODUCTS = [
   { id: 10, name: 'Dark Matter Joggers', price: 139, icon: '👖', brand: 'TORNADO LABS', badge: 'sale', oldPrice: 179, cat: 'pantalons' },
   { id: 11, name: 'Abyss Leather Belt', price: 79, icon: '🔗', brand: 'VALENTINO STUDIO', badge: 'best', cat: 'bijoux' },
   { id: 12, name: 'Nebula Beanie', price: 49, icon: '🧶', brand: 'TORNADO LABS', badge: 'new', cat: 'casquettes' },
+  { id: 13, name: 'Inferno Puffer Jacket', price: 349, icon: '🧥', brand: 'OBSIDIAN PARIS', badge: 'limited', cat: 'vestes' },
+  { id: 14, name: 'Typhon Zip Hoodie', price: 169, icon: '🧥', brand: 'TORNADO LABS', badge: 'new', cat: 'sweats' },
+  { id: 15, name: 'Onyx High-Top Sneakers', price: 279, icon: '👟', brand: 'OBSIDIAN PARIS', badge: 'best', cat: 'sneakers' },
+  { id: 16, name: 'Blizzard Graphic Tee', price: 79, icon: '👕', brand: 'TORNADO LABS', badge: 'new', cat: 't-shirts' },
+  { id: 17, name: 'Tempest Wool Overcoat', price: 399, icon: '🧥', brand: 'VALENTINO STUDIO', badge: 'limited', cat: 'vestes' },
+  { id: 18, name: 'Havoc Distressed Jeans', price: 189, icon: '👖', brand: 'TORNADO LABS', badge: 'best', cat: 'pantalons' },
+  { id: 19, name: 'Venom Leather Gloves', price: 99, icon: '🧤', brand: 'OBSIDIAN PARIS', badge: 'new', cat: 'bijoux' },
+  { id: 20, name: 'Apex Bucket Hat', price: 69, icon: '🧢', brand: 'TORNADO LABS', badge: 'best', cat: 'casquettes' },
+  { id: 21, name: 'Gravity Duffle Bag', price: 229, icon: '👜', brand: 'OBSIDIAN PARIS', badge: 'limited', cat: 'sacs' },
+  { id: 22, name: 'Maelstrom Crewneck Sweatshirt', price: 149, icon: '👕', brand: 'TORNADO LABS', badge: 'new', cat: 'sweats' },
+  { id: 23, name: 'Razor Platform Boots', price: 319, icon: '👟', brand: 'VALENTINO STUDIO', badge: 'limited', cat: 'sneakers' },
+  { id: 24, name: 'Wraith Sleeveless Vest', price: 119, icon: '🧥', brand: 'TORNADO LABS', badge: 'sale', oldPrice: 159, cat: 'vestes' },
+  { id: 25, name: 'Eclipse Sunglasses', price: 159, icon: '🕶️', brand: 'OBSIDIAN PARIS', badge: 'best', cat: 'bijoux' },
+  { id: 26, name: 'Storm Tech Backpack', price: 199, icon: '🎒', brand: 'TORNADO LABS', badge: 'new', cat: 'sacs' },
+  { id: 27, name: 'Frost Layered Shorts', price: 109, icon: '👖', brand: 'TORNADO LABS', badge: 'sale', oldPrice: 139, cat: 'pantalons' },
+  { id: 28, name: 'Obsidian Signet Ring', price: 89, icon: '💍', brand: 'VALENTINO STUDIO', badge: 'limited', cat: 'bijoux' },
 ];
 
 const BADGE_MAP = {
